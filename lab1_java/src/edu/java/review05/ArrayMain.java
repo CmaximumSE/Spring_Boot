@@ -3,11 +3,17 @@ package edu.java.review05;
 public class ArrayMain {
 
 	public static void main(String[] args) {
-		// 배열(arrary) : 
+		// 배열(arrary) : 하나의 변수 이름에 같은 타입의 값들을 여러개 저장하기 위한 타입.
+		// 배열에서 저장된 값들을 구분하기 위해서 인덱스를 사용.
+		// 배열의 인덱스는 0부터 시작. 배열의 마지막 인덱스는 ( 원소 개수 -1 ).
+		
+		// 정수 5개를 저장하는 배열
 		int[] numbers = {1, 2, 3, 4, 5};
 		numbers[2] = 100;
+		System.out.println(numbers);
+		
 		for(int i = 0; i < numbers.length; i++) {
-			
+			System.out.println(numbers[i] + ", ");
 		}
 		
 		System.out.println();
