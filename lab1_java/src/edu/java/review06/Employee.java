@@ -33,4 +33,41 @@ public class Employee {
 		// this : 클래스에서 정의된 다른 생성자를 호출
 	}
 	
+	 // 생성자 오버로딩(constructor overloading):
+    // (같은 이름의) 생성자를 여러개 정의하는 것.
+    // 파라미터가 다를 때(파라미터의 개수나 파라미터의 타입이 다를 때)에 생성자를 여러개 정의할 수 있음.
+    
+    // 메서드(method): 클래스 안에서 정의하는 함수(기능). 객체가 가지는 기능.
+    // 메서드 선언(정의) 방법: [수식어] 리턴타입 메서드이름(파라미터 선언) { ... }
+    // 리턴 타입: 메서드가 기능 수행 결과로 메서드를 호출한 곳에 반환하는 값의 데이터 타입.
+    // argument: 메서드(또는 생성자)를 호출할 때 전달하는 값.
+    // parameter: 메서드(또는 생성자)를 정의하는 곳에서, argument를 저장하기 위해서 선언하는 변수.
+    
+    /**
+     * 급여를 인상하고, 그 결과를 리턴.
+     * 
+     * @param ratio 인상률(10% -> 0.1).
+     * @return 인상된 급여.
+     */
+    public double raiseSalary(double ratio) {
+        // 현재 급여를 인상률만큼 증가(감소)시키고, 변경된 급여를 필드에 저장.
+        this.salary = this.salary * (1 + ratio);
+        
+        // 변경된 급여를 리턴(반환)
+        return this.salary;
+    }
+    
+    /**
+     * 직원의 정보(사번, 이름, 급여)를 콘솔창에 출력.
+     */
+    // void: 메서드가 리턴하는 값이 없을 때 리턴타입 자리에 사용하는 키워드.
+    // (주의): 생성자에서는 void를 쓰면 안 됨!
+    public void printEmpInfo() {
+        // String.format(): 문자열 템플릿
+        //   %d - 정수(digit), %f - 실수(floating number), %s - 문자열(string)
+        String info = String.format("사번=%d, 이름=%s, 급여=%.2f", empNo, empName, salary);
+        System.out.println(info);
+    }
+	
 }
+
