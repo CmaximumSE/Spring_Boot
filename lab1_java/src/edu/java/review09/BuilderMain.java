@@ -13,10 +13,17 @@ public class BuilderMain {
 		System.out.println(book2);
 		
 		Book book3 = new Book("하얼빈", "김훈", "역사소설");
-		System.out.println(book3);
+		System.out.println(book3.toString());
 		
 		Book book4 = Book.builder().title("하얼빈").author("김훈").description("역사소설").build();
-		System.out.println(book4);
+		System.out.println(book4.toString());
+		
+		String s = "Hello, World!";
+//		String result = s.toLowerCase().toUpperCase();
+		String result = s.replace(",", "...").replace("!", "!!!").concat("안녕?");
+//		result = result.toUpperCase();
+		System.out.println(result);
+		
 		
 	} // end of main
 
