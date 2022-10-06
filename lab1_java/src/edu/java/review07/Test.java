@@ -19,6 +19,7 @@ public class Test {
     }
     
     // setter 메서드: private 필드의 값을 설정(다른 값으로 변경)하는 메서드.
+    // retnrn type : void 
     public void setAge(int age) {
         this.age = age;
     }

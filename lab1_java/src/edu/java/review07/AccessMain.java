@@ -28,6 +28,7 @@ public class AccessMain {
 
     public static void main(String[] args) {
         // edu.java.review06.Employee 타입 변수 선언, 객체 생성 - import 사용.
+//    	edu.java.review06.Employee e = new edu.java.review06.Employee();	//import를 사용하지 못할 때
         Employee emp = new Employee(1, "홍길동", 100);
 
         // System.out.println(emp.empName);
