@@ -13,6 +13,7 @@ public class Book {
 	}
 	
 	// 메서드
+	@Override
 	public String toString() {
 		return String.format("Book(title=%s, author=%s, description=%s)", title, author, description);
 	} // end of toString
