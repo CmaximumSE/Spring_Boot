@@ -5,8 +5,9 @@ public class OracleDatabaseModule implements DatabaseModule {
 
 	@Override
 	public int insert(String col1, String col2) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("col1 = " + col1 + ", col2 = " + col2);
+		
+		return 1;
 	}
 
 }
