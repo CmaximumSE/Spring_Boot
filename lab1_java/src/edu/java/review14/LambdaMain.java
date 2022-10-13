@@ -53,23 +53,47 @@ public class LambdaMain {
 		 	
 		 	
 		 */
+		
+		// 숫자 2개 중에서 더 큰 수 (또는 같은 수)를 리턴하는 Calculator
+		// 1. 익명 클래스
+		Calculator whoIsGreater = new Calculator() {
+			
+			@Override
+			public double calculator(double x, double y) {
+				double result = 0;
+				if(x > y) {
+					result = x;
+				}else {
+					result = y;
+				}
+				
+//				return result;
+				return x > y ? x : y;  
+			}
+		};
+		
+		System.out.println(whoIsGreater.calculator(1, 2));
+		
+		// 2. 람다 표현식
+		Calculator whoIsGreater2 = (x, y) -> {
+//			double result = 0;
+//			if(x > y) {
+//				result = x;
+//			}else {
+//				result = y;
+//			}
+			
+//			return result;
+			return x > y ? x : y;  
+		};
+		
+		System.out.println(whoIsGreater2.calculator(3, 2));
+		
+		Calculator whoIsGreater3 = (x, y) -> x > y ? x : y;  
+		System.out.println(whoIsGreater3.calculator(10, 20));
+		
 	} // end of main
 
 } // end of class
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
