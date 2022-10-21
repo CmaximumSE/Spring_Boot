@@ -10,7 +10,7 @@ import com.example.boot1.dto.UserDto;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j // 콘솔 로그를 출력하기 위한 라이브러리.
+@Slf4j // 콘솔 로그를 출력하기 위한 라이브러리(lombok).
 // -> Slf4j 애너테이션(annotation)을 사용하려면 log 객체를 사용할 수 있음. 
 @Controller // 클래스를 스프링부트 앱의 컨트롤러 객체(클라이언트의 요청 처리하는 객체)로 등록.
 public class ExampleController {
