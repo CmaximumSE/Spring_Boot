@@ -1,0 +1,41 @@
+package com.example.boot2.repository;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+// Entity class : 데이터 베이스의 테이블과 같은 구조로 설계하는 자바 클래스.
+// -> 테이블의 컬럼을 자바 클래스의 필드로 선언.
+// -> 기본 생성자, getter method는 반드시 정의.
+// -> @Entity 애너테이션 설정.
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
+@ToString
+@Entity(name = "POSTS") // 클래스의 이름과 DB 테이블의 이름이 다를 경우에 name 속성으로 설정.
+public class Post extends BaseTimeEntity { 
+	
+	@Id // 테이블의 고유키(Primary key) -> unique, not null
+	@GeneratedValue(strategy = GenerationType.AUTO) // PK 생성 방법
+	private Long id; // 글 번호
+	
+	@Column(length = 1000, nullable = false) // Not Null 제약조건
+	private String title; // 글 제목
+	
+	@Column(length = 4000, nullable = false) 
+	private String content; // 글 내용(본문)
+	
+	private String author; // 글 작성자 아이디
+	
+	
+} // end of class
