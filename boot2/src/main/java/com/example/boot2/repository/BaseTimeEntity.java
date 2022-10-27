@@ -31,7 +31,7 @@ public class BaseTimeEntity {
 	private LocalDateTime createdTiem; // 생성시간 
 	
 	@LastModifiedDate // 검색한 엔터티의 필드 값들이 변경 될 때 시간을 자동으로 기록.
-	private LocalDate modifiedTime; // 수정시간
+	private LocalDateTime modifiedTime; // 수정시간
 	
 	
 	
