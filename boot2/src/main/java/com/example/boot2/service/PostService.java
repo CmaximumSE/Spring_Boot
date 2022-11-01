@@ -1,8 +1,11 @@
 package com.example.boot2.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.boot2.dto.PostCreateDto;
+import com.example.boot2.dto.PostReadDto;
 import com.example.boot2.repository.Post;
 import com.example.boot2.repository.PostRepository;
 
@@ -31,6 +34,17 @@ public class PostService {
 		log.info("DB save 후 id = {}", entity.getId());
 		
 		return entity.getId(); // DB 테이블에 insert된 글(Post)의 글번호를 리턴.
+	}
+	
+	public List<PostReadDto> read() {
+		log.info("read()");
+		
+		List<Post> list = postRepository.findAll();
+		log.info("# of list = {}", list.size());
+		 
+		return list.stream() // Stream 객체 생성(Lsit의 원소인 Post 객체들이 하나씩 지나가는 통로)
+				.map(PostReadDto::fromEntity) // Post 객체를 PostReadDto 타입으로 맵핑
+				.toList(); // 결과들을 List로 묶어줌
 	}
 	
 }// end of Service Class

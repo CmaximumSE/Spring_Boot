@@ -1,11 +1,14 @@
 package com.example.boot2.service;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.boot2.dto.PostCreateDto;
+import com.example.boot2.dto.PostReadDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,10 +31,14 @@ public class PostSerciceTest {
 										.build();
 		log.info("dto={}",dto);
 		
-		// PostService 객체의 create 메서드 호출
+		// PostService 객체의 create 메서드 호출 -> DB(Repository) 저장
 		Long result = postService.create(dto);
 		
-		log.info("result={}", result);
+		log.info("result={}", result); // -> DB 테이블에는 1개의 entity(행)가 저장.
+		
+		// PostService 객체의 메서드 호출 -> DB(repository)에서 select(검색)
+		List<PostReadDto> list = postService.read();
+		log.info(list.toString());
 	}
 	
 }// end of class

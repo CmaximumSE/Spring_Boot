@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Boot2</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
-		  rel="stylesheet" 
-		  integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" 
-		  crossorigin="anonymous">
-</head>
-<body>
-	<div class="container mt-3 ">
-		<header class="mt-4 p-5 bg-dark text-white text-center rounded">
-			<h1>메인 페이지</h1>
-		</header>
-	</div>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<!-- templates/fragment/thymeleaf-frag.html 안에서 head fragment를 삽입 -->
+	<head th:insert="fragment/thymeleaf-frag :: head"></head>
 	
+	<body>
+		<div th:replace="fragment/thymeleaf-frag :: header ('포스트 목록 페이지')"></div>
+		
+		<div class="container-fluid mt-3">
+			<!-- todo : 로그인/로그아웃/회원가입 -->
+			<nav>
+				<a th:href="@{/post/create}" class="btn btn-primary">새 글 작성</a>
+			</nav>
+		</div>
+
+		<!-- todo : 포스트 목록 테이블 -->
+		<div class="row">
+		</div>
+		
+		<div th:replace="fragment/thymeleaf-frag :: bootstrap-js"></div>
+	</body>
 	
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" 
-			integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" 
-			crossorigin="anonymous"></script>
-</body>
 </html>

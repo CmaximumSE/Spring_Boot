@@ -15,4 +15,10 @@ public class HomeController {
 		return "index"; // View Template(HTML)의 이름.
 	}
 	
+	@GetMapping("/post/create")
+	public String newPostPage() {
+		log.info("newPostPage() 호출");
+		return "/post/create"; // view : templates/post/create.html
+	}
+	
 } // end of class
