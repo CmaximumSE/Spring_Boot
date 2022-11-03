@@ -39,7 +39,7 @@ public class PostService {
 	public List<PostReadDto> read() {
 		log.info("read()");
 		
-		List<Post> list = postRepository.findAll();
+		List<Post> list = postRepository.findByOrderByIdDesc();
 		log.info("# of list = {}", list.size());
 		 
 		return list.stream() // Stream 객체 생성(Lsit의 원소인 Post 객체들이 하나씩 지나가는 통로)

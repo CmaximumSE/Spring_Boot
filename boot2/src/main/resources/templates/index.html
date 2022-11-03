@@ -16,6 +16,29 @@
 
 		<!-- todo : 포스트 목록 테이블 -->
 		<div class="row">
+			<table class="table table-striped table-hover m-3">	
+				<thead>	<!-- table head -->
+					<tr>	<!-- table row -->
+						<th>번호</th> <!--  table cell header : 컬럼이름  -->
+						<th>제목</th>
+						<th>작성자</th>
+						<th>수정시간</th>
+					</tr>
+				</thead>
+				<tbody>	<!-- table body -->
+					<tr th:each="post : ${postList}"> <!-- thymeleaf 반복문 -->
+						<td th:text="${post.id}">ID</td> <!-- table cell data -->
+						<td>
+						<!-- // /post/read/123 -->
+							<a th:href="@{/post/read/{id}(id=${post.id})}" 
+							   th:text="${post.title}">TITLE
+							</a>
+						</td>
+						<td th:text="${post.author}">AUTHOR</td>
+						<td th:text="${post.modifiedTime}">MODIFIED TIME</td>
+					</tr>
+				</tbody>
+			</table>		
 		</div>
 		
 		<div th:replace="fragment/thymeleaf-frag :: bootstrap-js"></div>
