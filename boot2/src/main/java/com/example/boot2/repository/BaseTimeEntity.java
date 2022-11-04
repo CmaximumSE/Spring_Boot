@@ -28,7 +28,7 @@ import lombok.Getter;
 public class BaseTimeEntity {
 	
 	@CreatedDate // 엔터티(테이블의 행, row)가 최초로 생성되서 테이블에 insert 되는 시간을 자동으로 기록.
-	private LocalDateTime createdTiem; // 생성시간 
+	private LocalDateTime createdTime; // 생성시간 
 	
 	@LastModifiedDate // 검색한 엔터티의 필드 값들이 변경 될 때 시간을 자동으로 기록.
 	private LocalDateTime modifiedTime; // 수정시간

@@ -46,5 +46,20 @@ public class PostService {
 				.map(PostReadDto::fromEntity) // Post 객체를 PostReadDto 타입으로 맵핑
 				.toList(); // 결과들을 List로 묶어줌
 	}
+
+	public Post read(Long id) {
+		log.info("read(id={})", id);
+		
+		
+		return postRepository.findById(id).orElseThrow();
+	}
+
+	public Long delete(Long id) {
+		log.info("delete(id={})", id);
+		
+		postRepository.deleteById(id); // DB 테이블에서 일치하는 id를 차자아서 row 삭제.
+		
+		return id; // 삭제한 post의 글 번호를 리턴.
+	}
 	
 }// end of Service Class

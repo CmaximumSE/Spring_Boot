@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.boot2.dto.PostReadDto;
+import com.example.boot2.repository.Post;
 import com.example.boot2.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -39,4 +41,36 @@ public class HomeController {
 		return "/post/create"; // view : templates/post/create.html
 	}
 	
+	@GetMapping("/post/read/{id}")
+	public String readPostPage(@PathVariable Long id, Model model) {
+		//@PathVariable : 요청 주소(path)에 포함된 변수의 값을 읽어서 선언된 파라미터에 전달.
+		log.info("readPostPage(id={}) 호출", id);
+		
+		// postService 메서드를 호출해서 view에 표현할 Post 객체를 읽어옴.
+		Post entity = postService.read(id);
+		// Post 타입 객체를 model에 (속성으로) 추가해서, view로 전달.
+		model.addAttribute("post", entity);
+		
+		return "/post/read"; // view 이름	
+	}
+	
+	@GetMapping("/post/modify/{id}")
+	public String modifyPostPage(@PathVariable Long id, Model model) {
+		log.info("modifyPostPage(id={}) 호출", id);
+		
+		// 수정 전의 데이터를 DB에서 검색
+		Post entity = postService.read(id);
+		// view에 전달
+		model.addAttribute("post", entity);
+		
+		return "/post/modify";
+	}
+	
 } // end of class
+
+
+
+
+
+
+

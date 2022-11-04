@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragment/thymeleaf-frag :: head"></head>
+
+<body>
+	<div th:replace="fragment/thymeleaf-frag :: header ('포스트 상세 보기 페이지')"></div>
+	
+	<div class="container-fluid mt-3">
+		
+		<nav>
+			<a th:href="@{/}" class="btn btn-secondary">포스트 목록</a>		
+			<!-- TODO : 로그인 아이디와 작성자 아아디가 일치할 때만 보여 -->
+			<a th:href="@{/post/modify/{id}(id=${post.id})}"   class="btn btn-primary">수정</a>		
+		</nav>
+		
+		<div class="mt-4">
+			<form>
+				<div>
+					<label for="id" class="form-label">번호</label>
+					<input id="id" type="text" class="form-control" th:value="${post.id}" readonly />
+				</div>
+				<div>
+					<label for="title" class="form-label">제목</label>
+					<input id="title" type="text" class="form-control" th:value="${post.title}" readonly />
+				</div>
+				<div>
+					<label for="content" class="form-label">내용</label>
+					<textarea id="content" class="form-control" th:text="${post.content}" readonly></textarea>
+				</div>
+				<div>
+					<label for="author" class="form-label">작성자</label>
+					<input id="author" type="text" class="form-control" th:value="${post.author}" readonly />
+				</div>
+				<div>
+					<label for="createdTime" class="form-label">작성시간</label>
+					<input id="createdTime" type="text" class="form-control" th:value="${post.createdTime}" readonly />
+				</div>
+				<div>
+					<label for="modifiedTime" class="form-label">수정시간</label>
+					<input id="modifiedTime" type="text" class="form-control" th:value="${post.modifiedTime}" readonly />
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<div th:replace="fragment/thymeleaf-frag :: bootstrap-js"></div>
+</body>
+</html>

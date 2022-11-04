@@ -1,5 +1,7 @@
 package com.example.boot2.web;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,14 @@ public class PostRestController {
 		log.info("createPost({})", dto);
 		
 		return postService.create(dto); // 클라이언트로 직접 응답되는 값. 
+	}
+	
+	@DeleteMapping("/{id}") // "/api/ppst/{id} 요청 주소의 DELETE 방식의 요청을 처리하는 메서드
+	public Long DeletePost(@PathVariable Long id) {
+		log.info("deletePost(id={})", id);
+		
+		// postService 객체의 메서드를 호출해서, DB테이블에서 데이터 삭제하고 그 결과를 리턴.
+		return postService.delete(id); // -> Ajax 요청의 콜백 함수의 데이터가 됨.
 	}
 	
 } // end of controller
