@@ -42,6 +42,44 @@
 	<div th:replace="fragment/thymeleaf-frag :: bootstrap-js"></div>
 	<div th:replace="fragment/thymeleaf-frag :: jquery-js"></div>
 	<script>
+	// 수정 완료 번튼을 찾아서 클릭 이벤트 리스너 등록.
+	$('#btnUpdate').click(function() {
+		const id = $('#id').val(); // 업데이트할 포스트 글 번호. 
+		const title = $('#title').val(); // 업데이트할 포스트 제목.
+		const content = $('#content').val(); // 업데이트할 포스트 내용.
+
+		if(title == '' || content == '') {
+			alert('제목과 내용은 반드시 입력해야 함!');
+			return; // 함수 종료.
+		}
+		
+		// Ajax 요청을 보낼 데이터(JavaScript Object)
+		const data = {
+			title : title,
+			content : content
+		};
+		
+		// Ajax 요청을 보냄.
+		$.ajax({
+			url : '/api/post/' + id, // Ajax 요청을 보낼 주소 = 글 번호 : path variable.
+			method : 'PUT', // Ajax 요청 방식(GET - read, POST - create, PUT - update, DELETE - delete).
+			contentType : 'application/json; charset=UTF-8', // 서버로 보내는 컨텐트 타입.
+			data : JSON.stringify(data), // 서버로 보내는 데이터(컨텐트).
+			success : function(data) {
+// 				console.log(data);
+				alert(data.id + "번 포스트 수정 성공")
+// 				location.href = '/' // 포스트 전체 목록 화면으로 이동.
+				location.href = "/post/read/" + data.id; // (수정 불가한) 상세보기 페이지로 이동.
+			},
+			error : function(err) {
+				console.log(err);
+			}
+			
+		});
+		
+	});
+	
+	
 	// 삭제 버틀을 찾아서 클릭 이벤트 리스너를 등록.
 	$('#btnDelete').click(function(){
 		const id = $('#id').val(); // 글번호가 쓰여진 input의 값을 읽음.

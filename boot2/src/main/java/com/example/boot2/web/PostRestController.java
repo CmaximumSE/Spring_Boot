@@ -3,11 +3,14 @@ package com.example.boot2.web;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.boot2.dto.PostCreateDto;
+import com.example.boot2.dto.PostUpdateDto;
+import com.example.boot2.repository.Post;
 import com.example.boot2.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -18,7 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/post") // -> 모든 컨트롤러 메소드들의 맵핑 주소는 "/api/post"로 시작.
 @RestController // 스프링 컨텍스트에 RESTcontroller로 등록 -> DispacherServlet이 호출할 수 있음.
 // REST Controller : 메서드가 리턴하는 값은 View의 이름이 아니라, 클라이언트로 직접 응답되는 값.
-
 public class PostRestController {
 	
 	private final PostService postService; // -> 생성에 의한 의존성 주입.
@@ -30,6 +32,15 @@ public class PostRestController {
 		log.info("createPost({})", dto);
 		
 		return postService.create(dto); // 클라이언트로 직접 응답되는 값. 
+	}
+	
+	@PutMapping("/{id}") // PUT 방식의 "api/put/{id}" 요청의 주소를 처리.
+	public Post updatePost(@PathVariable Long id, @RequestBody PostUpdateDto dto) {
+		log.info("updatePost(id={},dto={})", id, dto);
+		
+		Post post = postService.update(id, dto);
+		
+		return post; // DB에서 수정 완료된 Post 객체(Entity)를 클라이언트로 리턴.
 	}
 	
 	@DeleteMapping("/{id}") // "/api/ppst/{id} 요청 주소의 DELETE 방식의 요청을 처리하는 메서드

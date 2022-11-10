@@ -10,12 +10,33 @@
 		<div class="container-fluid mt-3">
 			<!-- todo : 로그인/로그아웃/회원가입 -->
 			<nav>
+				<!-- TODO : 로그인 한 사용자에게 보여줄 메뉴 : 로그아웃 -->
+				<div>
+				
+				</div>
+				<!-- TODO : 로그인 하지 않은 사용자게 보여줄 메뉴 : 로그인, 회원가입 -->
+				<div class="my-2">
+					<a th:href="@{/login}" class="btn btn-info">로그인</a>
+					<a th:href="@{/user/signup}" class="btn btn-info">회원 가입</a>
+				</div>
 				<a th:href="@{/post/create}" class="btn btn-primary">새 글 작성</a>
 			</nav>
+			
+			<div class="mt-2"> <!-- 검색 UI -->
+				<form th:action="@{/post/search}" method="get">
+					<select name="type">
+						<option value="t">제목</option>
+						<option value="c">내용</option>
+						<option value="a">작성자</option>
+					</select>
+					<input type="text" name="keyword" placeholder="검색어" required />
+					<input type="submit" value="검색" />
+				</form>
+			</div>
 		</div>
 
 		<!-- todo : 포스트 목록 테이블 -->
-		<div>
+		<div class="mt-2">
 			<table class="table table-striped table-hover m-3">	
 				<thead>	<!-- table head -->
 					<tr>	<!-- table row -->

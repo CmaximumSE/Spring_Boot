@@ -19,4 +19,15 @@ public interface PostRepository extends JpaRepository<Post, Long>{
 	// 메소드 body가 자동으로 생성됨.
 	List<Post> findByOrderByIdDesc();
 	
+	// 검색 기능에 필요한 메서드
+	// (1) 글 제목으로 검색하기 : 
+	// select + from POSTS where lower(TITLE) like lower(검색어) order by ID desc;
+	List<Post> findByTitleContainingIgnoreCaseOrderByIdDesc(String keyword);
+	
+	// (2) 글 내용으로 검색하기
+	List<Post> findByContentContainingIgnoreCaseOrderByIdDesc(String keyword);
+	
+	// (3) 작성자로 검색하기
+	List<Post> findByAuthorContainingIgnoreCaseOrderByIdDesc(String keyword);
+	
 } // end of interface

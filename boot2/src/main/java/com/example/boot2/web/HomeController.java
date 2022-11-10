@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.boot2.dto.PostReadDto;
 import com.example.boot2.repository.Post;
@@ -64,6 +65,19 @@ public class HomeController {
 		model.addAttribute("post", entity);
 		
 		return "/post/modify";
+	}
+	
+	@GetMapping("/post/search")
+	public String search(@RequestParam String type, @RequestParam String keyword, Model model) {
+		// @RequestParam String type : 질의 문자열(Query Sring)에서 요청 파라미터 type의 값.(검색 타입)
+		// @RequestParam String keyword : 질의 문자열(Query Sring)에서 요청 파라미터 keyword 값.(검색어)
+		// Model model : 검색 결과를 뷰에 전달하기 위해서. 
+		log.info("search(type={}, keyword={})", type, keyword);
+		
+		List<PostReadDto> searchResult = postService.search(type, keyword);
+		model.addAttribute("postList", searchResult);
+		
+		return "index"; // templates/index.html
 	}
 	
 } // end of class
